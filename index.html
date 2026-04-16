@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Coinbase</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Coinbase">
-    <link rel="apple-touch-icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/3d/8e/5e/3d8e5e8e-6d1a-4d7e-9e8e-6d1a4d7e9e8e/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg">
-    <title>Coinbase</title>
+
+    <link rel="apple-touch-icon" href="https://altcoinsbox.com/wp-content/uploads/2023/01/coinbase-logo.webp">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://altcoinsbox.com/wp-content/uploads/2023/01/coinbase-logo.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://altcoinsbox.com/wp-content/uploads/2023/01/coinbase-logo.webp">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://altcoinsbox.com/wp-content/uploads/2023/01/coinbase-logo.webp">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #050f19; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #050f19; -webkit-tap-highlight-color: transparent; margin: 0; }
         .cb-blue { color: #0052FF; }
         .cb-bg-blue { background-color: #0052FF; }
         #settingsPanel { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(100%); }
@@ -77,19 +84,10 @@
                 <button onclick="toggleSettings()" class="text-gray-400 text-3xl">&times;</button>
             </div>
             <div class="space-y-5">
-                <div>
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Full Name</label>
-                    <input id="inputName" type="text" class="w-full bg-gray-100 p-4 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" placeholder="GabeS">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Initials (2 chars)</label>
-                    <input id="inputInitials" type="text" maxlength="2" class="w-full bg-gray-100 p-4 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" placeholder="GS">
-                </div>
-                <div>
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Balance ($)</label>
-                    <input id="inputBalance" type="number" class="w-full bg-gray-100 p-4 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" placeholder="179000">
-                </div>
-                <button onclick="saveSettings()" class="w-full bg-[#0052FF] text-white font-bold py-4 rounded-2xl mt-4 shadow-lg active:scale-95 transition-transform">Update Portfolio</button>
+                <input id="inputName" type="text" class="w-full bg-gray-100 p-4 rounded-2xl outline-none" placeholder="Name">
+                <input id="inputInitials" type="text" maxlength="2" class="w-full bg-gray-100 p-4 rounded-2xl outline-none" placeholder="Initials">
+                <input id="inputBalance" type="number" class="w-full bg-gray-100 p-4 rounded-2xl outline-none" placeholder="Balance ($)">
+                <button onclick="saveSettings()" class="w-full bg-[#0052FF] text-white font-bold py-4 rounded-2xl mt-4 active:scale-95 transition-transform">Update Portfolio</button>
             </div>
         </div>
     </div>
@@ -103,26 +101,18 @@
     </div>
 
     <script>
-        const BTC_PRICE = 74822.02; // Live market price for April 15, 2026
-
-        function toggleSettings() {
-            document.getElementById('settingsPanel').classList.toggle('open');
-        }
-
+        const BTC_PRICE = 74822.02;
+        function toggleSettings() { document.getElementById('settingsPanel').classList.toggle('open'); }
         function saveSettings() {
             const name = document.getElementById('inputName').value || "GabeS";
             const initials = document.getElementById('inputInitials').value || "GS";
-            const balanceInput = document.getElementById('inputBalance').value;
-            const balance = balanceInput ? parseFloat(balanceInput) : 179000;
-
+            const balance = parseFloat(document.getElementById('inputBalance').value) || 179000;
             const btcCount = (balance / BTC_PRICE).toFixed(4);
-
             document.getElementById('displayName').innerText = name;
             document.getElementById('displayInitials').innerText = initials;
             document.getElementById('displayBalance').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
             document.getElementById('assetBtcValue').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
             document.getElementById('assetBtcCount').innerText = btcCount + ' BTC';
-
             toggleSettings();
         }
     </script>

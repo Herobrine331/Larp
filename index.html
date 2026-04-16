@@ -6,140 +6,125 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Coinbase">
-    
     <link rel="apple-touch-icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/3d/8e/5e/3d8e5e8e-6d1a-4d7e-9e8e-6d1a4d7e9e8e/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg">
-    
     <title>Coinbase</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #ffffff; 
-            color: #050f19; 
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #050f19; -webkit-tap-highlight-color: transparent; }
         .cb-blue { color: #0052FF; }
         .cb-bg-blue { background-color: #0052FF; }
-        .nav-shadow { box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        #settingsPanel { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(100%); }
+        #settingsPanel.open { transform: translateY(0); }
     </style>
 </head>
-<body class="select-none">
+<body class="select-none overflow-x-hidden">
 
-    <nav class="flex justify-between items-center px-5 py-4 sticky top-0 bg-white z-50 nav-shadow">
-        <div class="flex items-center space-x-2">
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <nav class="flex justify-between items-center px-5 py-4 sticky top-0 bg-white z-40 border-b border-gray-50">
+        <div class="flex items-center space-x-2 cursor-pointer active:opacity-40 transition-all p-1 -m-1" onclick="toggleSettings()">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
                 <circle cx="16" cy="16" r="16" fill="#0052FF"/>
                 <rect x="11" y="11" width="10" height="10" fill="white"/>
             </svg>
             <span class="text-xl font-bold tracking-tight">coinbase</span>
         </div>
-        <div class="flex items-center space-x-5 text-gray-700">
+        <div class="flex items-center space-x-5">
             <i class="fa-regular fa-bell text-xl"></i>
-            <div class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-[#0052FF] font-bold text-xs border border-blue-100">GS</div>
+            <div id="displayInitials" class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-[#0052FF] font-bold text-xs border border-blue-100 uppercase">GS</div>
         </div>
     </nav>
 
     <div class="max-w-md mx-auto pb-32">
-        
-        <div class="px-6 pt-10 pb-4 text-left">
-            <div class="flex items-center text-gray-500 font-semibold text-xs uppercase tracking-wider mb-1">
-                <span>Total balance</span>
-                <i class="fa-solid fa-chevron-down ml-1 text-[8px]"></i>
-            </div>
-            <h1 class="text-[44px] font-bold tracking-tight leading-tight mb-8">$179,000.00</h1>
+        <div class="px-6 pt-10 pb-4">
+            <p class="text-gray-500 font-semibold text-xs uppercase tracking-wider mb-1">Total balance</p>
+            <h1 id="displayBalance" class="text-[44px] font-bold tracking-tight mb-8 leading-tight">$179,000.00</h1>
             
-            <div class="flex justify-between items-center text-center">
-                <div class="w-1/4">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
-                        <i class="fa-solid fa-plus text-[#0052FF] text-xl"></i>
-                    </div>
-                    <span class="text-xs font-bold">Buy</span>
-                </div>
-                <div class="w-1/4">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
-                        <i class="fa-solid fa-minus text-[#0052FF] text-xl"></i>
-                    </div>
-                    <span class="text-xs font-bold">Sell</span>
-                </div>
-                <div class="w-1/4">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
-                        <i class="fa-solid fa-arrow-up text-[#0052FF] text-xl"></i>
-                    </div>
-                    <span class="text-xs font-bold">Send</span>
-                </div>
-                <div class="w-1/4">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
-                        <i class="fa-solid fa-arrow-down text-[#0052FF] text-xl"></i>
-                    </div>
-                    <span class="text-xs font-bold">Receive</span>
-                </div>
+            <div class="flex justify-between text-center mb-8">
+                <div class="w-1/4"><div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-plus text-[#0052FF] text-xl"></i></div><span class="text-xs font-bold">Buy</span></div>
+                <div class="w-1/4"><div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-minus text-[#0052FF] text-xl"></i></div><span class="text-xs font-bold">Sell</span></div>
+                <div class="w-1/4"><div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-arrow-up text-[#0052FF] text-xl"></i></div><span class="text-xs font-bold">Send</span></div>
+                <div class="w-1/4"><div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2"><i class="fa-solid fa-arrow-down text-[#0052FF] text-xl"></i></div><span class="text-xs font-bold">Receive</span></div>
             </div>
         </div>
 
         <div class="h-2 bg-gray-50 my-4"></div>
 
         <div class="px-6">
-            <div class="flex justify-between items-center py-4">
-                <h2 class="text-xl font-bold">Your assets</h2>
-                <span class="text-[#0052FF] font-bold text-sm">See all</span>
-            </div>
-
+            <h2 class="text-xl font-bold py-4">Your assets</h2>
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <div class="w-11 h-11 rounded-full bg-[#F7931A] flex items-center justify-center mr-4 shadow-sm">
-                        <i class="fab fa-bitcoin text-white text-2xl"></i>
-                    </div>
-                    <div>
-                        <p class="font-bold text-lg">Bitcoin</p>
-                        <p class="text-gray-500 text-sm font-medium">BTC</p>
-                    </div>
+                    <div class="w-11 h-11 rounded-full bg-[#F7931A] flex items-center justify-center mr-4"><i class="fab fa-bitcoin text-white text-2xl"></i></div>
+                    <div><p class="font-bold text-lg">Bitcoin</p><p class="text-gray-500 text-sm font-medium">BTC</p></div>
                 </div>
                 <div class="text-right">
-                    <p class="font-bold text-lg">$179,000.00</p>
-                    <p class="text-gray-500 text-sm font-medium">2.3923 BTC</p>
+                    <p id="assetBtcValue" class="font-bold text-lg">$179,000.00</p>
+                    <p id="assetBtcCount" class="text-gray-500 text-sm font-medium">2.3923 BTC</p>
                 </div>
             </div>
 
-            <div class="mt-6 p-5 bg-blue-600 rounded-3xl text-white shadow-lg shadow-blue-200">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-white/20 px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase">Member Since 2021</div>
-                    <i class="fa-solid fa-shield-halved text-white/80"></i>
-                </div>
-                <p class="text-sm opacity-90 mb-1">Authenticated Account</p>
-                <h3 class="text-2xl font-bold tracking-tight">GabeS</h3>
+            <div class="mt-6 p-5 bg-blue-600 rounded-3xl text-white shadow-lg">
+                <p class="text-sm opacity-80 mb-1">Authenticated Account</p>
+                <h3 id="displayName" class="text-2xl font-bold tracking-tight">GabeS</h3>
             </div>
         </div>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-4 py-3 flex justify-around items-center max-w-md mx-auto">
-        <div class="flex flex-col items-center text-[#0052FF]">
-            <i class="fa-solid fa-house text-2xl mb-1"></i>
-            <span class="text-[10px] font-bold">Home</span>
-        </div>
-        <div class="flex flex-col items-center text-gray-400">
-            <i class="fa-solid fa-chart-pie text-2xl mb-1"></i>
-            <span class="text-[10px] font-bold">Assets</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <div class="cb-bg-blue w-14 h-14 rounded-full flex items-center justify-center -mt-12 shadow-xl border-[6px] border-white">
-                <i class="fa-solid fa-right-left text-white text-xl"></i>
+    <div id="settingsPanel" class="fixed inset-0 bg-black/50 z-50 flex items-end">
+        <div class="bg-white w-full max-w-md mx-auto rounded-t-3xl p-8 pb-12 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold">Editor</h2>
+                <button onclick="toggleSettings()" class="text-gray-400 text-3xl">&times;</button>
             </div>
-        </div>
-        <div class="flex flex-col items-center text-gray-400">
-            <i class="fa-solid fa-compass text-2xl mb-1"></i>
-            <span class="text-[10px] font-bold">Explore</span>
-        </div>
-        <div class="flex flex-col items-center text-gray-400">
-            <i class="fa-solid fa-gear text-2xl mb-1"></i>
-            <span class="text-[10px] font-bold">Settings</span>
+            <div class="space-y-5">
+                <div>
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Full Name</label>
+                    <input id="inputName" type="text" class="w-full bg-gray-100 p-4 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" placeholder="GabeS">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Initials (2 chars)</label>
+                    <input id="inputInitials" type="text" maxlength="2" class="w-full bg-gray-100 p-4 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" placeholder="GS">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Balance ($)</label>
+                    <input id="inputBalance" type="number" class="w-full bg-gray-100 p-4 rounded-2xl border-none focus:ring-2 focus:ring-blue-500 outline-none" placeholder="179000">
+                </div>
+                <button onclick="saveSettings()" class="w-full bg-[#0052FF] text-white font-bold py-4 rounded-2xl mt-4 shadow-lg active:scale-95 transition-transform">Update Portfolio</button>
+            </div>
         </div>
     </div>
 
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-4 py-3 flex justify-around items-center max-w-md mx-auto z-40">
+        <div class="flex flex-col items-center text-[#0052FF]"><i class="fa-solid fa-house text-2xl mb-1"></i><span class="text-[10px] font-bold">Home</span></div>
+        <div class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-chart-pie text-2xl mb-1"></i><span class="text-[10px] font-bold">Assets</span></div>
+        <div class="flex flex-col items-center"><div class="cb-bg-blue w-14 h-14 rounded-full flex items-center justify-center -mt-12 shadow-xl border-[6px] border-white text-white text-xl"><i class="fa-solid fa-right-left"></i></div></div>
+        <div class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-compass text-2xl mb-1"></i><span class="text-[10px] font-bold">Explore</span></div>
+        <div class="flex flex-col items-center text-gray-400"><i class="fa-solid fa-gear text-2xl mb-1"></i><span class="text-[10px] font-bold">Settings</span></div>
+    </div>
+
+    <script>
+        const BTC_PRICE = 74822.02; // Live market price for April 15, 2026
+
+        function toggleSettings() {
+            document.getElementById('settingsPanel').classList.toggle('open');
+        }
+
+        function saveSettings() {
+            const name = document.getElementById('inputName').value || "GabeS";
+            const initials = document.getElementById('inputInitials').value || "GS";
+            const balanceInput = document.getElementById('inputBalance').value;
+            const balance = balanceInput ? parseFloat(balanceInput) : 179000;
+
+            const btcCount = (balance / BTC_PRICE).toFixed(4);
+
+            document.getElementById('displayName').innerText = name;
+            document.getElementById('displayInitials').innerText = initials;
+            document.getElementById('displayBalance').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
+            document.getElementById('assetBtcValue').innerText = '$' + balance.toLocaleString('en-US', {minimumFractionDigits: 2});
+            document.getElementById('assetBtcCount').innerText = btcCount + ' BTC';
+
+            toggleSettings();
+        }
+    </script>
 </body>
 </html>

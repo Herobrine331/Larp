@@ -2,143 +2,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coinbase | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Coinbase">
+    
+    <link rel="apple-touch-icon" href="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/3d/8e/5e/3d8e5e8e-6d1a-4d7e-9e8e-6d1a4d7e9e8e/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg">
+    
+    <title>Coinbase</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #ffffff;
-            color: #050f19;
-            user-select: none; /* Prevents accidental text highlighting during the larp */
+            background-color: #ffffff; 
+            color: #050f19; 
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
-        .cb-blue { color: #0052ff; }
-        .cb-bg-blue { background-color: #0052ff; }
-        .border-gray { border-color: #eceff1; }
+        .cb-blue { color: #0052FF; }
+        .cb-bg-blue { background-color: #0052FF; }
+        .nav-shadow { box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="select-none">
 
-    <nav class="bg-white border-b border-gray p-4 flex justify-between items-center sticky top-0 z-50">
+    <nav class="flex justify-between items-center px-5 py-4 sticky top-0 bg-white z-50 nav-shadow">
         <div class="flex items-center space-x-2">
-            <div class="cb-bg-blue w-8 h-8 rounded-full flex items-center justify-center">
-                <div class="bg-white w-3 h-3"></div>
-            </div>
-            <span class="font-bold text-xl tracking-tight">coinbase</span>
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="16" fill="#0052FF"/>
+                <rect x="11" y="11" width="10" height="10" fill="white"/>
+            </svg>
+            <span class="text-xl font-bold tracking-tight">coinbase</span>
         </div>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-5 text-gray-700">
             <i class="fa-regular fa-bell text-xl"></i>
-            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">GS</div>
+            <div class="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-[#0052FF] font-bold text-xs border border-blue-100">GS</div>
         </div>
     </nav>
 
-    <div class="max-w-md mx-auto bg-white min-h-screen pb-24">
+    <div class="max-w-md mx-auto pb-32">
         
-        <div class="p-6 pt-10">
-            <div class="flex items-center space-x-2 mb-1">
-                <p class="text-gray-500 font-medium">Total balance</p>
-                <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
+        <div class="px-6 pt-10 pb-4 text-left">
+            <div class="flex items-center text-gray-500 font-semibold text-xs uppercase tracking-wider mb-1">
+                <span>Total balance</span>
+                <i class="fa-solid fa-chevron-down ml-1 text-[8px]"></i>
             </div>
-            <h1 class="text-4xl font-bold mb-6 tracking-tight">$179,000.00</h1>
+            <h1 class="text-[44px] font-bold tracking-tight leading-tight mb-8">$179,000.00</h1>
             
-            <div class="grid grid-cols-4 gap-2 mb-8">
-                <div class="flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-2">
-                        <i class="fa-solid fa-plus cb-blue"></i>
+            <div class="flex justify-between items-center text-center">
+                <div class="w-1/4">
+                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
+                        <i class="fa-solid fa-plus text-[#0052FF] text-xl"></i>
                     </div>
-                    <span class="text-xs font-semibold">Buy</span>
+                    <span class="text-xs font-bold">Buy</span>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-2">
-                        <i class="fa-solid fa-minus cb-blue"></i>
+                <div class="w-1/4">
+                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
+                        <i class="fa-solid fa-minus text-[#0052FF] text-xl"></i>
                     </div>
-                    <span class="text-xs font-semibold">Sell</span>
+                    <span class="text-xs font-bold">Sell</span>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-2">
-                        <i class="fa-solid fa-arrow-up cb-blue"></i>
+                <div class="w-1/4">
+                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
+                        <i class="fa-solid fa-arrow-up text-[#0052FF] text-xl"></i>
                     </div>
-                    <span class="text-xs font-semibold">Send</span>
+                    <span class="text-xs font-bold">Send</span>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-2">
-                        <i class="fa-solid fa-arrow-down cb-blue"></i>
+                <div class="w-1/4">
+                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-2 transition active:scale-95">
+                        <i class="fa-solid fa-arrow-down text-[#0052FF] text-xl"></i>
                     </div>
-                    <span class="text-xs font-semibold">Receive</span>
+                    <span class="text-xs font-bold">Receive</span>
                 </div>
             </div>
         </div>
 
-        <div class="h-[1px] bg-gray-100 mx-6"></div>
+        <div class="h-2 bg-gray-50 my-4"></div>
 
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
+        <div class="px-6">
+            <div class="flex justify-between items-center py-4">
                 <h2 class="text-xl font-bold">Your assets</h2>
+                <span class="text-[#0052FF] font-bold text-sm">See all</span>
             </div>
 
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-[#F7931A] flex items-center justify-center mr-4">
-                        <i class="fab fa-bitcoin text-white text-xl"></i>
+                    <div class="w-11 h-11 rounded-full bg-[#F7931A] flex items-center justify-center mr-4 shadow-sm">
+                        <i class="fab fa-bitcoin text-white text-2xl"></i>
                     </div>
                     <div>
-                        <p class="font-bold">Bitcoin</p>
-                        <p class="text-gray-500 text-sm">BTC</p>
+                        <p class="font-bold text-lg">Bitcoin</p>
+                        <p class="text-gray-500 text-sm font-medium">BTC</p>
                     </div>
                 </div>
                 <div class="text-right">
-                    <p class="font-bold">$179,000.00</p>
-                    <p class="text-gray-500 text-sm">2.3930 BTC</p>
+                    <p class="font-bold text-lg">$179,000.00</p>
+                    <p class="text-gray-500 text-sm font-medium">2.3923 BTC</p>
                 </div>
             </div>
 
-            <div class="flex justify-between items-center py-4 border-t border-gray">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center mr-4 text-white font-bold">
-                        $
-                    </div>
-                    <div>
-                        <p class="font-bold">Cash</p>
-                        <p class="text-gray-500 text-sm">USD</p>
-                    </div>
+            <div class="mt-6 p-5 bg-blue-600 rounded-3xl text-white shadow-lg shadow-blue-200">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="bg-white/20 px-2 py-1 rounded text-[10px] font-bold tracking-widest uppercase">Member Since 2021</div>
+                    <i class="fa-solid fa-shield-halved text-white/80"></i>
                 </div>
-                <div class="text-right">
-                    <p class="font-bold">$0.00</p>
-                </div>
+                <p class="text-sm opacity-90 mb-1">Authenticated Account</p>
+                <h3 class="text-2xl font-bold tracking-tight">GabeS</h3>
             </div>
         </div>
+    </div>
 
-        <div class="px-6 py-4 bg-blue-50 mx-6 rounded-xl flex items-center justify-between">
-            <div class="flex items-center">
-                <i class="fa-solid fa-circle-check cb-blue mr-2 text-sm"></i>
-                <span class="text-sm font-bold">Verified Account: <span class="cb-blue">GabeS</span></span>
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-4 py-3 flex justify-around items-center max-w-md mx-auto">
+        <div class="flex flex-col items-center text-[#0052FF]">
+            <i class="fa-solid fa-house text-2xl mb-1"></i>
+            <span class="text-[10px] font-bold">Home</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-chart-pie text-2xl mb-1"></i>
+            <span class="text-[10px] font-bold">Assets</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="cb-bg-blue w-14 h-14 rounded-full flex items-center justify-center -mt-12 shadow-xl border-[6px] border-white">
+                <i class="fa-solid fa-right-left text-white text-xl"></i>
             </div>
         </div>
-
-        <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray p-3 flex justify-around items-center max-w-md mx-auto">
-            <div class="flex flex-col items-center cb-blue">
-                <i class="fa-solid fa-house text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">Home</span>
-            </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <i class="fa-solid fa-chart-pie text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">Assets</span>
-            </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <div class="cb-bg-blue w-12 h-12 rounded-full flex items-center justify-center -mt-10 shadow-xl border-4 border-white">
-                    <i class="fa-solid fa-right-left text-white text-lg"></i>
-                </div>
-            </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <i class="fa-solid fa-compass text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">Explore</span>
-            </div>
-            <div class="flex flex-col items-center text-gray-400">
-                <i class="fa-solid fa-gear text-xl mb-1"></i>
-                <span class="text-[10px] font-bold">Settings</span>
-            </div>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-compass text-2xl mb-1"></i>
+            <span class="text-[10px] font-bold">Explore</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fa-solid fa-gear text-2xl mb-1"></i>
+            <span class="text-[10px] font-bold">Settings</span>
         </div>
     </div>
 
